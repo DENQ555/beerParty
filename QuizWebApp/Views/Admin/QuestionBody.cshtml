@@ -1,0 +1,7 @@
+﻿@model QuizWebApp.Models.Question
+@using QuizWebApp.Models
+@using QuizWebApp.Helpers
+
+@if (Model != null) {
+    <text>@Html.FormatToHtml(Model.Body, Model.BodyFormat)</text>
+}

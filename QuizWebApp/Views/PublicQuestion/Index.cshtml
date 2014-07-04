@@ -1,0 +1,23 @@
+﻿@model IEnumerable<QuizWebApp.Models.PublicQuestion>
+@using QuizWebApp.Helpers
+@{
+    ViewBag.Title = "出題済みクイズ問題";
+    ViewBag.BodyCssClass = "public-questions-page";
+}
+<hgroup>
+    <h2>@ViewBag.Title</h2>
+    <h3>@ViewBag.Message</h3>
+</hgroup>
+
+<div>
+    @foreach (var question in Model)
+    {
+        <div class="well">
+            <h3>Q @question.QuestionNumber</h3>
+            <div>@Html.FormatToHtml(question.Question.Body, question.Question.BodyFormat)</div>
+            <div>
+                <a href="@Url.Action("Detail", new { id = question.Question.QuestionId })" class="btn"><i class="icon-circle-arrow-right"></i> 詳細</a>
+            </div>
+        </div>
+    }
+</div>
