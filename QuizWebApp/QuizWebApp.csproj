@@ -66,8 +66,12 @@
     <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
       <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.0.12182\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="MarkdownDeep">
       <HintPath>..\packages\MarkdownDeep.NET.1.5\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
@@ -109,7 +113,6 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -205,6 +208,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201407081423370_InitialCreate.cs" />
+    <Compile Include="Migrations\201407081423370_InitialCreate.Designer.cs">
+      <DependentUpon>201407081423370_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407081518467_Answers.cs" />
+    <Compile Include="Migrations\201407081518467_Answers.Designer.cs">
+      <DependentUpon>201407081518467_Answers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407091420552_Users.cs" />
+    <Compile Include="Migrations\201407091420552_Users.Designer.cs">
+      <DependentUpon>201407091420552_Users.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201407100849196_Questions.cs" />
+    <Compile Include="Migrations\201407100849196_Questions.Designer.cs">
+      <DependentUpon>201407100849196_Questions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\Context.cs" />
@@ -364,6 +384,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201407081423370_InitialCreate.resx">
+      <DependentUpon>201407081423370_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407081518467_Answers.resx">
+      <DependentUpon>201407081518467_Answers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407091420552_Users.resx">
+      <DependentUpon>201407091420552_Users.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201407100849196_Questions.resx">
+      <DependentUpon>201407100849196_Questions.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
