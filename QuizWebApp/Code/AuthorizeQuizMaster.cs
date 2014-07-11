@@ -32,6 +32,7 @@ namespace QuizWebApp.Code
                 return
                     setting["idProviderName"] == userInfo.IdProviderName &&
                     setting["name"] == userInfo.Name;
+                    
             }
         }
     }
