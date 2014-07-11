@@ -22,7 +22,7 @@
                 @Model.Answers.Count(a => a.PlayerID == player.UserId && a.Status == AnswerStateType.Correct)
             </td>
             <!-- ★ポイント表示 -->
-                @{int point =0;
+                @*@{int point =0;
                  foreach (var a in Model.Answers)
                 {
                     if (a.PlayerID == player.UserId && a.Status == AnswerStateType.Correct)
@@ -30,8 +30,8 @@
                      point+= a.Point;
                     }
                 }
-                }
-            <td class="score">@point</td>
+                }*@
+            <td class="score">@player.Score</td>
             @foreach(var q in Model.Questions.ToList())
             {
                 var ans = Model.Answers.FirstOrDefault(a => a.PlayerID == player.UserId && a.QuestionID == q.QuestionId) ?? new Answer();
