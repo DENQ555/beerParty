@@ -5,7 +5,6 @@
 @{
     var q = Model.Questions.Find(Model.Contexts.First().CurrentQuestionID);
     //★
-    var q = Model.Questions.Find(Model.Contexts.First().CurrentQuestionID);
     var playerID = this.User.Identity.UserId();
     var user = Model.Users.First(u => u.UserId == playerID);
 }
