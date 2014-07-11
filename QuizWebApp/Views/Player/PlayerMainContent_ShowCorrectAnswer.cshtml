@@ -9,7 +9,11 @@
     var choosed = yourAns.ChoosedOptionIndex >= 0 ? q.GetOptions()[yourAns.ChoosedOptionIndex - 1] : null;
     //★
     var correctOption = q.IndexOfCorrectOption > 0 ? q.GetOptions()[q.IndexOfCorrectOption - 1]: new OptionViewModel(0, "未決定");
+    var user = Model.Users.First(u => u.UserId == playerID);
 }
+
+<h3>現在のスコア</h3>
+<div>@user.Score</div>
 
 <h3>問題</h3>
 

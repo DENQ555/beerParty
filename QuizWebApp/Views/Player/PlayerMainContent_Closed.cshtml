@@ -7,7 +7,12 @@
     var playerID = this.User.Identity.UserId();
     var yourAns = Model.Answers.First(a => a.PlayerID == playerID && a.QuestionID == q.QuestionId);
     var choosed = yourAns.ChoosedOptionIndex >= 0 ? q.GetOptions()[yourAns.ChoosedOptionIndex - 1] : null;
+    //★
+     var user = Model.Users.First(u => u.UserId == playerID);
 }
+
+<h3>現在のスコア</h3>
+<div>@user.Score</div>
 
 <h3>問題</h3>
 

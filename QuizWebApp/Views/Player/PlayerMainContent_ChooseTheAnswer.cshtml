@@ -1,10 +1,18 @@
 ﻿@model QuizWebApp.Models.QuizWebAppDb
+@using QuizWebApp
 @using QuizWebApp.Models
 @using QuizWebApp.Helpers
-
 @{
     var q = Model.Questions.Find(Model.Contexts.First().CurrentQuestionID);
+    //★
+    var q = Model.Questions.Find(Model.Contexts.First().CurrentQuestionID);
+    var playerID = this.User.Identity.UserId();
+    var user = Model.Users.First(u => u.UserId == playerID);
 }
+
+<h3>現在のスコア</h3>
+<div>@user.Score</div>
+
 <h3>問題</h3>
 
 <div class="well well-small">

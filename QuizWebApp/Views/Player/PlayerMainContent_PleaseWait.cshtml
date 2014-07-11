@@ -1,4 +1,15 @@
 ﻿@model QuizWebApp.Models.QuizWebAppDb
+@using QuizWebApp
 @using QuizWebApp.Models
+@using QuizWebApp.Helpers
+@{
+    //★
+    var q = Model.Questions.Find(Model.Contexts.First().CurrentQuestionID);
+    var playerID = this.User.Identity.UserId();
+    var user = Model.Users.First(u => u.UserId == playerID);
+}
+
+<h3>現在のスコア</h3>
+<div>@user.Score</div>
 
 <p class="label label-wait"><i class="icon-info-sign icon-white"></i> 司会者からクイズ問題が出題されるまで、そのままお待ちください。</p>
