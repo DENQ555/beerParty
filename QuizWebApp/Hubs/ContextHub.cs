@@ -42,19 +42,23 @@ namespace QuizWebApp.Hubs
  
                     //勝ち決定　同数だった場合は1が正解
                     int minIndex=0,minCnt=100000;
+                    bool draw = false;
                      foreach (KeyValuePair<int, int> kvp in playerCnt) {
                          if (kvp.Value == 0 || minCnt == kvp.Value)
                          {
-                             minIndex = 0;
-                             minCnt = 100000;
+                             draw = true;
                          }
                          else if(minCnt>kvp.Value){
                              minCnt = kvp.Value;
                              minIndex = kvp.Key;
                          }
                      }
+                     if (draw == true) {
+                         minIndex = 0;  minCnt = 100000;
+                     }
                     currentQuestion.IndexOfCorrectOption = minIndex;
 
+                    if (draw == false) { 
                     answers
                        .ForEach(a => a.Status =
                           a.ChoosedOptionIndex == currentQuestion.IndexOfCorrectOption
@@ -62,7 +66,7 @@ namespace QuizWebApp.Hubs
 
                     //配布ポイント決定 answerで正解、不正解のユーザID取得->不正解ユーザのポイントを半分にする＋半分ずつを合計→正解ユーザで山分け　
                     var correctAnswers = answers.Where(a => a.QuestionID == context.CurrentQuestionID && a.Status == AnswerStateType.Correct).ToList();
-                    var wrongAnswers = answers.Where(a => a.QuestionID == context.CurrentQuestionID && a.Status == AnswerStateType.Correct).ToList();
+                    var wrongAnswers = answers.Where(a => a.QuestionID == context.CurrentQuestionID && a.Status == AnswerStateType.Incorrect).ToList();
 
                    int allDistributePoint = 0;
 
@@ -87,8 +91,9 @@ namespace QuizWebApp.Hubs
                          var playerID = a.PlayerID;
                          var user = users.First(u => u.UserId == playerID);
                          user.Score += currentQuestion.DistributePoint;
-                     } 
-                           
+                     }
+                    } 
+  
                     //Answerのポイント更新 
                     answers
                        .ForEach(a => a.Point =  
