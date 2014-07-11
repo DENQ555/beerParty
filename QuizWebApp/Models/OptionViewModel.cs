@@ -11,10 +11,13 @@ namespace QuizWebApp.Models
 
         public string Option { get; set; }
 
-        public OptionViewModel(int optionNumber, string option)
+        public string OptionImage { get; set; }
+
+        public OptionViewModel(int optionNumber, string option, string optionImage)
         {
             this.OptionNumber = optionNumber;
             this.Option = option;
+            this.OptionImage = optionImage;
         }
     }
 }

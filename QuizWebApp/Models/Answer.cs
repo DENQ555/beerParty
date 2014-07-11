@@ -22,9 +22,5 @@ namespace QuizWebApp.Models
         /// 3: incorrect.
         /// </summary>
         public AnswerStateType Status { get; set; }
-
-        //★
-        public int Point { get; set; }
-
     }
 }

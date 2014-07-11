@@ -80,7 +80,7 @@ namespace QuizWebApp.Controllers
                 includeProperties: null,
                 excludeProperties: new[] { "QuestionId", "OwnerUserId", "CreateAt" });
 
-         // ★   if (IsValidDataURL(question) == false) throw new ApplicationException("Invalid Data URL.");
+            if (IsValidDataURL(question) == false) throw new ApplicationException("Invalid Data URL.");
 
             this.DB.SaveChanges();
 
@@ -89,15 +89,10 @@ namespace QuizWebApp.Controllers
 
         private bool IsValidDataURL(Question model)
         {
-            //return model.GetOptions(trim: false)
-            //    .Select(opt => opt.OptionImage ?? "")
-            //    .All(url => Regex.IsMatch(url, @"(^data:image/\w+;\w+,[0-9a-zA-Z/+=]+$)|(^$)"));
-
-            //★
-            if (model.BodyImage != null) return Regex.IsMatch(model.BodyImage, @"(^data:image/\w+;\w+,[0-9a-zA-Z/+=]+$)|(^$)");
-            else return true;
+            return model.GetOptions(trim: false)
+                .Select(opt => opt.OptionImage ?? "")
+                .All(url => Regex.IsMatch(url, @"(^data:image/\w+;\w+,[0-9a-zA-Z/+=]+$)|(^$)"));
         }
-
 
         [HttpGet]
         public ActionResult Delete(int id)
