@@ -43,7 +43,12 @@ namespace QuizWebApp.Hubs
                     //勝ち決定　同数だった場合は1が正解
                     int minIndex=0,minCnt=100000;
                      foreach (KeyValuePair<int, int> kvp in playerCnt) {
-                          if(minCnt>kvp.Value && kvp.Value > 0){
+                         if (kvp.Value == 0 || minCnt == kvp.Value)
+                         {
+                             minIndex = 0;
+                             minCnt = 100000;
+                         }
+                         else if(minCnt>kvp.Value){
                              minCnt = kvp.Value;
                              minIndex = kvp.Key;
                          }
