@@ -19,6 +19,8 @@
             <p>
             <a href="@Url.Action("Index", "Admin")" class="btn btn-block btn-large">クイズを進行</a>
         </p>
+    
+           <li>@Html.ActionLink("ダッシュボード", "Index", "Dashboard", routeValues: null, htmlAttributes: new { target = "_blank", @class = "link-dashboard" })</li>
     }
 }
 else
