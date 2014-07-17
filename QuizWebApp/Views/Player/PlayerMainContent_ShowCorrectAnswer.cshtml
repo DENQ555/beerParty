@@ -44,6 +44,16 @@
     @if (correctOption.OptionNumber == 0)
     {
          <h4>正解はまだ決まってません</h4>
+        <h4>正解は</h4>
+    <div class="options">
+        <div>@(correctOption.Option)でした</div>
+        @*★@if (string.IsNullOrEmpty(correctOption.OptionImage) == false)
+            {
+                <img src="@correctOption.OptionImage" />
+            }*@
+        <div>@(q.Option1)：@(q.Option1Count)人</div>
+        <div>@(q.Option2)：@(q.Option2Count)人</div>
+    </div>        
     }
     else if (yourAns.Status == AnswerStateType.Correct)
     {
