@@ -15,7 +15,7 @@
     </tr>
 
     @*    @foreach (var player in Model.Players)*@
-    @{var OrderPlayers = Model.Players.OrderByDescending(p => p.Score)}
+    @{var OrderPlayers = Model.Players.OrderByDescending(p => p.Score);}
     @foreach (var player in OrderPlayers)
     {
         <tr>
