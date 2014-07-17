@@ -42,10 +42,10 @@
 
     @if (correctOption.OptionNumber == 0)
     {
-         <h4>正解はまだ決まってません</h4>
-        <h4>正解は</h4>
+         @*<div>正解はまだ決まってません</div>*@
+        <div>正解は@(correctOption.Option)です</div>
     <div class="options">
-        <div>@(correctOption.Option)です</div>
+        @*<div>@(correctOption.Option)です</div>*@
         @*★@if (string.IsNullOrEmpty(correctOption.OptionImage) == false)
             {
                 <img src="@correctOption.OptionImage" />
@@ -58,9 +58,9 @@
     {
         <h3 class="correct">正解! :)</h3>
                 
-        <h4>正解は</h4>
+        <div>正解は@(correctOption.Option)です</div>
     <div class="options">
-        <div>@(correctOption.Option)です</div>
+        @*<div>@(correctOption.Option)です</div>*@
         @*★@if (string.IsNullOrEmpty(correctOption.OptionImage) == false)
             {
                 <img src="@correctOption.OptionImage" />
