@@ -67,42 +67,46 @@ namespace QuizWebApp.Hubs
                     //配布ポイント決定 answerで正解、不正解のユーザID取得->不正解ユーザのポイントを半分にする＋半分ずつを合計→正解ユーザで山分け　
                     var correctAnswers = answers.Where(a => a.QuestionID == context.CurrentQuestionID && a.Status == AnswerStateType.Correct).ToList();
                     var wrongAnswers = answers.Where(a => a.QuestionID == context.CurrentQuestionID && a.Status == AnswerStateType.Incorrect).ToList();
-                    var noAnswers = answers.Where(a => a.QuestionID == context.CurrentQuestionID && a.ChoosedOptionIndex == -1).ToList();
+                 //   var noAnswers = answers.Where(a => a.QuestionID == context.CurrentQuestionID && a.ChoosedOptionIndex == -1).ToList();
+                    List<string> correctPlayers = new List<string>();
 
-                   int allDistributePoint = 0;
+                   int allDistributePoint = 0;;
 
-                    //没収
+                    //不正解ユーザの半分スコア合計
                     foreach(var a in wrongAnswers){
                         var playerID = a.PlayerID;
                         var user = users.First(u => u.UserId == playerID);
                         int score = user.Score;
                         allDistributePoint += score / 2;
-                        user.Score = score / 2;
+          //              user.Score = score / 2;
                     }
-                   
-                   //正解・不正解両方に入ってないユーザの点数没収
-                    foreach (var a in noAnswers)
-                    {
-                        var playerID = a.PlayerID;
-                        var user = users.First(u => u.UserId == playerID);
-                        int score = user.Score;
-                        user.Score = score / 2;
-                    }
- 
+                    
                     //配布ポイント計算
                      if (minCnt != 0)
                         currentQuestion.DistributePoint = allDistributePoint / minCnt;
                     else
                         currentQuestion.DistributePoint = 0;
 
-                    //配布
+                    //正解ユーザに配布
                      foreach (var a in correctAnswers)
                      {
                          var playerID = a.PlayerID;
                          var user = users.First(u => u.UserId == playerID);
                          user.Score += currentQuestion.DistributePoint;
+
+                         correctPlayers.Add(playerID);
                      }
-                    } 
+
+                    //正解に入ってないユーザの点数は半分に
+                    foreach (var u in users)
+                    {
+                        if (correctPlayers.Contains(u.Score.ToString()) == false) {
+                            int score = u.Score;
+                            u.Score = score / 2;
+                        }
+                    }
+                    }
+
   
                     //Answerのポイント更新 
                     answers
