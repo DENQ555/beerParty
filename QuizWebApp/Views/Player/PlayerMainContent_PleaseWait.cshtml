@@ -9,7 +9,6 @@
     var user = Model.Users.First(u => u.UserId == playerID);
 }
 
-<h3>現在のスコア</h3>
-<div>@user.Score</div>
+<h3>現在のスコア：@(user.Score)</h3>
 
 <p class="label label-wait"><i class="icon-info-sign icon-white"></i> 司会者からクイズ問題が出題されるまで、<br>そのままお待ちください。</p>
