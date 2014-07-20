@@ -5,13 +5,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.Body)
         </dt>
-        <dd>
+        <dd>s
             @Html.FormatToHtml(Model.Body, Model.BodyFormat)
         </dd>
         @* ★ *@
         <dd>
-            <img src="http://beerparty.apphb.com/img/@(Model.BodyImage)" width="200" class="@(string.IsNullOrEmpty(Model.BodyImage) ? "no-image" : "")" />
-         </dd>
+            @*<img src="http://beerparty.apphb.com/img/@(Model.BodyImage)" width="200" class="@(string.IsNullOrEmpty(Model.BodyImage) ? "no-image" : "")" />*@
+            <img src="http://beerparty.apphb.com/img/@(Model.BodyImage)" class="img-responsive" />
+        </dd>
         
         <dt>回答選択肢</dt>
         <dd>
