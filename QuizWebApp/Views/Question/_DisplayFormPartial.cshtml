@@ -10,9 +10,9 @@
         </dd>
         @* ★ *@
         <dd>
-            @if (string.IsNullOrEmpty(q.BodyImage) == false)
+            @if (string.IsNullOrEmpty(Model.BodyImage) == false)
             {
-                <img src="http://beerparty.apphb.com/img/@(q.BodyImage)" class="img-responsive" />
+                <img src="http://beerparty.apphb.com/img/@(Model.BodyImage)" class="img-responsive" />
             }
         </dd>
         
