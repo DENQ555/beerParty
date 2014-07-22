@@ -73,13 +73,13 @@ namespace QuizWebApp.Hubs
                    int allDistributePoint = 0;;
 
                     //不正解ユーザの半分スコア合計
-                    foreach(var a in wrongAnswers){
-                        var playerID = a.PlayerID;
-                        var user = users.First(u => u.UserId == playerID);
-                        int score = user.Score;
-                        allDistributePoint += score / 2;
+      //              foreach(var a in wrongAnswers){
+       //                 var playerID = a.PlayerID;
+        //                var user = users.First(u => u.UserId == playerID);
+         //               int score = user.Score;
+          //              allDistributePoint += score / 2;
           //              user.Score = score / 2;
-                    }
+           //         }
                     
                     //正解ユーザに配布
                      foreach (var a in correctAnswers)
@@ -115,7 +115,8 @@ namespace QuizWebApp.Hubs
                      {
                          var playerID = a.PlayerID;
                          var user = users.First(u => u.UserId == playerID);
-                         user.Score += currentQuestion.DistributePoint;
+                         int score = user.Score;
+                         user.Score = score + currentQuestion.DistributePoint;
 
               //           correctPlayers.Add(playerID);
                      }
