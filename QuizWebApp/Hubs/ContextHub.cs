@@ -81,30 +81,44 @@ namespace QuizWebApp.Hubs
           //              user.Score = score / 2;
                     }
                     
-                    //配布ポイント計算
-                     if (minCnt != 0)
-                        currentQuestion.DistributePoint = allDistributePoint / minCnt;
-                    else
-                        currentQuestion.DistributePoint = 0;
-
                     //正解ユーザに配布
+                     foreach (var a in correctAnswers)
+                     {
+                         var playerID = a.PlayerID;
+                         var user = users.First(u => u.UserId == playerID);
+              //           user.Score += currentQuestion.DistributePoint;
+
+                         correctPlayers.Add(playerID);
+                     }
+
+                     //正解に入ってないユーザの点数は半分に
+                     foreach (var u in users)
+                     {
+                         if (correctPlayers.Contains(u.UserId.ToString()) == false)
+                         {
+                             int score = u.Score;
+                             allDistributePoint += score / 2;
+                             u.Score = score / 2;
+                         }
+                     }
+
+                     //配布ポイント計算
+                     if (minCnt != 0)
+                         currentQuestion.DistributePoint = allDistributePoint / minCnt;
+                     else
+                         currentQuestion.DistributePoint = 0;
+
+
+
+                     //正解ユーザに配布
                      foreach (var a in correctAnswers)
                      {
                          var playerID = a.PlayerID;
                          var user = users.First(u => u.UserId == playerID);
                          user.Score += currentQuestion.DistributePoint;
 
-                         correctPlayers.Add(playerID);
+              //           correctPlayers.Add(playerID);
                      }
-
-                    //正解に入ってないユーザの点数は半分に
-                    foreach (var u in users)
-                    {
-                        if (correctPlayers.Contains(u.Score.ToString()) == false) {
-                            int score = u.Score;
-                            u.Score = score / 2;
-                        }
-                    }
                     }
 
   
