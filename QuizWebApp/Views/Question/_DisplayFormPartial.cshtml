@@ -10,8 +10,10 @@
         </dd>
         @* ★ *@
         <dd>
-            @*<img src="http://beerparty.apphb.com/img/@(Model.BodyImage)" width="200" class="@(string.IsNullOrEmpty(Model.BodyImage) ? "no-image" : "")" />*@
-            <img src="http://beerparty.apphb.com/img/@(Model.BodyImage)" class="img-responsive" />
+            @if (string.IsNullOrEmpty(q.BodyImage) == false)
+            {
+                <img src="http://beerparty.apphb.com/img/@(q.BodyImage)" class="img-responsive" />
+            }
         </dd>
         
         <dt>回答選択肢</dt>

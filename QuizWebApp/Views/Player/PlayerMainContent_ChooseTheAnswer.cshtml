@@ -18,7 +18,10 @@
         @Html.FormatToHtml(q.Body, q.BodyFormat)
     </div>
     @* ★ *@
+    @if (string.IsNullOrEmpty(q.BodyImage) == false)
+    {
     <img src="http://beerparty.apphb.com/img/@(q.BodyImage)" class="img-responsive" />
+    }
 </div>
 
 <h3>以下から回答を選択してください</h3>
